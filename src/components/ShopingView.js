@@ -1,31 +1,27 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react'; 
 import Product from './Product';
-
-class ProductList extends Component {
+class ShopingView extends Component {
     render() {
         const productList = this.props.productList;
 
         console.log(productList);
 
         const productComponents = productList.map((product, index) => {
-            return <Product 
+            return <Product
                 productName={product.productName}
                 description={product.description}
                 price={product.price}
                 key={index}
                 index={index}   
-                deleteProduct={this.props.deleteProduct}
-                delete={true}/>;
+                deleteProduct={this.props.deleteProduct}/>;
         });
-
         return (
             <div>
-                { productComponents }
+                <h1> ShopingView </h1>
+                {productComponents}
             </div>
         );
-
     }
 }
 
-export default ProductList;
+export default ShopingView;

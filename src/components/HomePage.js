@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AdminView from './AdminView'
+import ShopingView from './ShopingView';
 
 class HomePage extends Component {
 
@@ -29,6 +30,17 @@ class HomePage extends Component {
         const itemCurrentlyOnSale = event.target.value
         this.setState({itemCurrentlyOnSale})
     }
+    addProduct = (data) => {
+        const products= [...this.state.productList];
+        products.push(data);
+        this.setState({productList:products});
+
+    }
+    deleteProduct = (index) => {
+        let products= [...this.state.productList];
+        products.splice(index,1);
+        this.setState({productList:products});
+    }
 
     render() {
         return (
@@ -50,7 +62,11 @@ class HomePage extends Component {
                     </div> : null}
 
 
-                    <AdminView productList={this.state.productList}/>
+                    <AdminView 
+                    productList={this.state.productList} 
+                    addProduct={this.addProduct}
+                    deleteProduct={this.deleteProduct}/>
+                    <ShopingView productList={this.state.productList} />
                 </div>
             </div>
         );
